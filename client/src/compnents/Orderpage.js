@@ -2,7 +2,7 @@ import React from "react";
 import "./Orderpage.css";
 import moment from "moment";
 import BasketItem from "./BasketItem";
-import CurrencyFormat from "react-currency-format";
+import NumberFormat from "react-number-format";
 
 function Orderpage(props) {
   return (
@@ -19,7 +19,7 @@ function Orderpage(props) {
       })}
       <div className="order_total">
 
-      <CurrencyFormat
+      <NumberFormat
         renderText={(value) => <h3>Order Total: {value}</h3>}
         decimalScale={2}
         value={props.order_data.amount/100}

@@ -4,7 +4,7 @@ import Header from "./Header";
 import { useSelector } from "react-redux";
 import BasketItem from "./BasketItem";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import CurrencyFormat from "react-currency-format";
+import NumberFormat from "react-number-format";
 import axios from "./axios.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -129,7 +129,7 @@ function Payment() {
               <form onSubmit={handleSubmit}>
                 <CardElement onChange={handleChange} />
                 <div className="payment-pricetotal">
-                  <CurrencyFormat
+                  <NumberFormat
                     renderText={(value) => <h3>Order Total: {value}</h3>}
                     decimalScale={2}
                     value={total}
