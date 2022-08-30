@@ -1,0 +1,22 @@
+
+.home_image{
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1),rgba(0,0,0,0));
+}
+
+.home_row{
+    display: flex;
+    z-index: 1;
+    margin: 5px 0;
+}
+
+div.product{
+    transition: transform 0.5s ease;
+}
+
+div.product:hover{
+    transform: scale(1.02);
+    box-shadow: 10px 10px 10px #1b1818;
+}

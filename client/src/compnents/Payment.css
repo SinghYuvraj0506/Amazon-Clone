@@ -1,0 +1,28 @@
+.payment_container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment_title{
+    text-align: center;
+    padding: 5px;
+    
+}
+
+.payment_option{
+    display: flex;
+    margin-left: 60px;
+    width: 90%;
+    border-bottom: 2px solid darkgray;
+    padding: 20px;
+    
+}
+
+.payment_option_title{
+    margin-right: 25px ;
+}
+
+.payment_address{
+    margin-left: 90px;
+}

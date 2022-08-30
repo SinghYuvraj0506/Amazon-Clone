@@ -1,0 +1,43 @@
+.basket{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    width: 80%;
+    height: 250px;
+    
+}
+
+.basket-item-image {
+    max-width: 150px;
+    width: 100%;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+
+.basket-product-info{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    
+}
+
+.basket_product_rating{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.basket_product_price{
+    margin-top: 5px;
+}
+
+
+.remove_from_cart{
+    background:#f0c14b;
+    border:1px solid;
+    width: 200px;
+    border-radius: 5px;
+    margin-top:10px;
+    border-color:#888734#9c7e31#846a29;
+    color:#111;
+    cursor: pointer;
+ }
