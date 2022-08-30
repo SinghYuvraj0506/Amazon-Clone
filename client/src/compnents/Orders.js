@@ -13,7 +13,7 @@ function Orders() {
 
   useEffect(() => {
     const getorder = async () =>{
-      const response = await fetch("/orders/getorder", {
+      const response = await fetch("orders/getorder", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", 

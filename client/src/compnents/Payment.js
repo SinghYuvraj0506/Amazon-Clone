@@ -38,7 +38,7 @@ function Payment() {
 
     const getClientSecret = async () => {
       if(total>=1){
-        const response = await fetch(`/payment/create?total=${total * 100}`,{
+        const response = await fetch(`payment/create?total=${total * 100}`,{
           method: "POST"
         });
   
@@ -64,7 +64,7 @@ function Payment() {
       .then(async ({paymentIntent}) => {
         // paymentIntent = payment confirmation
 
-        const response = await fetch("/orders/addorder", {
+        const response = await fetch("orders/addorder", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", 
