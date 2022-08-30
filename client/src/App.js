@@ -35,11 +35,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/checkout" element={<Checkout />} />
-        <Route exact path="/payment" element={<Elements stripe={promise}><Payment /></Elements>} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/orders" element={<Orders />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Elements stripe={promise}><Payment /></Elements>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </Router>
   );

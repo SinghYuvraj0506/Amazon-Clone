@@ -17,9 +17,6 @@ app.use(express.json()); // it is a middleware used to take req.body in json for
 
 // Available Routes
 
-app.get("/", (req, res) => {
-  res.send("Hello Guys");
-});
 
 app.post("/payment/create", async (request, response) => {
   const total = request.query.total;
