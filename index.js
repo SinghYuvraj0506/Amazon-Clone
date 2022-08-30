@@ -7,7 +7,7 @@ const stripe = require("stripe")(
 );
 
 connectToMongo();
-let port = 80;
+let port = process.env.PORT || 80;
 
 const app = express();
 
@@ -44,6 +44,6 @@ if ( process.env.NODE_ENV == "production") {
   app.use(express.static( "client/build")) ;
 }
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Welcome to the port ${port}`);
 });
