@@ -21,7 +21,6 @@ function App() {
   const { user } = bindActionCreators(actionCreators, dispatch);
   useEffect(() => {
     onAuthStateChanged(auth, (currentuser) => {
-      console.log(currentuser);
       if(currentuser){
         user(currentuser);
       }

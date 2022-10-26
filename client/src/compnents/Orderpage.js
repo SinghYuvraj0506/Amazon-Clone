@@ -12,10 +12,10 @@ function Orderpage(props) {
         {moment.unix(props.order_data.created).format("MMMM Do YYYY, h:mma")}
       </p>
       <p className="order_id">
-        <small>{props.order_data._id}</small>
+        <small>{props.order_data.payment_id}</small>
       </p>
       {props.order_data.basket?.map((item, index) => {
-        return <BasketItem item={item} hidebutton={true}/>;
+        return <BasketItem key={index} item={item} hidebutton={true}/>;
       })}
       <div className="order_total">
 

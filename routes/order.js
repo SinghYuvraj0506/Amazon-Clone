@@ -11,6 +11,7 @@ router.post("/addorder", async (req, res) => {
       basket: req.body.basket,
       amount: req.body.amount,
       created: req.body.created,
+      payment_id:req.body.payment_id
     });
 
     const data = {
@@ -20,26 +21,24 @@ router.post("/addorder", async (req, res) => {
       },
     };
 
-    res.send(data);
+    res.json({success:true});
   } catch (error) {
-    res.status(404).send({ error: error.message });
+    res.status(404).json({ success:false, error: error.message });
   }
 });
 
 // second endpoint is used to get orders in the list at /getorder endpoint
-router.post("/getorder", (req, res) => {
+router.post("/getorder", async (req, res) => {
   try {
-    User.find({ user_id: req.body.user_id }, function (err, docs) {
-      if (err) {
-        return res.status(400).send("User not found");
-      } else {
-        let myuser = JSON.stringify(docs);
+    const order = await User.find({ user_id: req.body.user_id })
+    if(!order){
+      return res.json({success:true,orders:0})
+    }
 
-        res.send(myuser);
-      }
-    });
+    return res.json({success:true,orders:order.reverse()})
+
   } catch (error) {
-    res.status(404).send({ error: error.message });
+    res.status(404).send({ success:false,error: error.message });
   }
 });
 

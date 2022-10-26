@@ -5,17 +5,16 @@ import { useSelector } from "react-redux";
 import BasketItem from "./BasketItem";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import NumberFormat from "react-number-format";
-import axios from "./axios.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state/index";
+import {host} from "../config/config"
 
 function Payment() {
   const history = useNavigate();
   const basketItem = useSelector((state) => state.basketItem);
   const user = useSelector((state) => state.user);
-  const host = "http://localhost:80"
 
   const dispatch = useDispatch();
   const { emptytheBasket } = bindActionCreators(actionCreators, dispatch);
@@ -38,33 +37,35 @@ function Payment() {
 
     const getClientSecret = async () => {
       if(total>=1){
-        const response = await fetch(`payment/create?total=${total * 100}`,{
+        const response = await fetch(host.length !==0 ? `${host}/payment/create?total=${total*100}` : `payment/create?total=${total*100}`,{
           method: "POST"
         });
-  
-        setClientSecret(response.data.clientSecret);
+        const json = await response.json()
+        setClientSecret(json.clientSecret);
       }
     };
-    getClientSecret();
+    getClientSecret().then(()=>{
+      setTimeout(() => {
+        alert("Use the test card alternate 4 2 4 2 ... in continuation for all the fields")
+        
+      }, 2000);
+    })
     // eslint-disable-next-line
   }, [basketItem.basket]);
 
-  console.log("The SECRET IS ==> ", clientSecret);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
 
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
+    stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       })
       .then(async ({paymentIntent}) => {
         // paymentIntent = payment confirmation
-
-        const response = await fetch("orders/addorder", {
+        const response = await fetch( host.length !==0 ? `${host}/orders/addorder` : "orders/addorder", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", 
@@ -74,17 +75,22 @@ function Payment() {
             user_id: user.user.uid,
             basket: basketItem.basket,
             amount: paymentIntent.amount,
-            created: paymentIntent.created
+            created: paymentIntent.created,
+            payment_id:paymentIntent.id
           }), // body data type must match "Content-Type" header
         });
-
+        const json = await response.json()
+        if(json.success){
         setSucceeded(true);
         setError(null);
         setProcessing(false);
-
         emptytheBasket();
-
+        alert("Order Placed Successfully")
         history("../orders", { replace: true });
+      }
+      else{
+        alert("Some error occured Try again")
+      }
       });
   };
 
@@ -107,7 +113,7 @@ function Payment() {
           <div className="payment_option">
             <h3 className="payment_option_title">Delivery Address</h3>
             <div className="payment_address">
-              <p>{user.user.email.split("@")[0]},</p>
+              <p>{user.user?.email.split("@")[0]},</p>
               <p>123 React Lane</p>
               <p>Govindpuri, Delhi, India</p>
             </div>

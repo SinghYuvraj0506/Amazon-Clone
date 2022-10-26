@@ -22,9 +22,9 @@ function Checkout() {
           <div>
             <h2 className="checkout_pretitle">Hello, {user.user?user.user.email.split("@")[0]:"Guest"}</h2>
             <h2 className="checkout_title">Your Shopping Basket</h2>
-            {basketItem.basket.map((element, index) => {
+            {basketItem.basket?.length !==0 ? basketItem.basket.map((element, index) => {
               return <BasketItem key={index} item={element} />;
-            })}
+            }): <div align="center" style={{marginTop:"30px",fontSize:"20px",fontWeight:"500"}}>No items in the cart</div>}
           </div>
         </div>
         <div className="checkout_right">

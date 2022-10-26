@@ -18,7 +18,12 @@ const OrderSchema= new mongoose.Schema({
     created:{
         type:Object,
         required:true
+    },
+    payment_id:{
+        type:String,
+        required:true
     }
+
 })
 
 

@@ -21,8 +21,6 @@ app.use(express.json()); // it is a middleware used to take req.body in json for
 app.post("/payment/create", async (request, response) => {
   const total = request.query.total;
 
-  console.log("Payment has been asked for amount", total);
-
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
     currency: "inr",

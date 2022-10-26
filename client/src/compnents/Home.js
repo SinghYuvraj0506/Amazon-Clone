@@ -4,6 +4,18 @@ import "./Home.css";
 import Product from "./Product";
 import Header from "./Header";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 function Home() {
   let key1 = "511515152";
   let key2 = "511514656";
@@ -19,12 +31,42 @@ function Home() {
       <Header />
       <div className="home">
         <div className="home_container">
-          <img
+        <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        loop={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide><img
+            className="home_image"
+            src="https://notrealamazon.com/static/media/GUAK_2021_GWBleedingHero_ENG_COVIDUPDATE_XSite_1500X600_PV_en-GB._CB664761625_.d48d14b3.jpg"
+            alt="home_back"
+          /></SwiperSlide>
+        <SwiperSlide><img
+            className="home_image"
+            src="https://m.media-amazon.com/images/I/51FbC+1GAsL._SX3000_.jpg"
+            alt="home_back"
+          /></SwiperSlide>
+        <SwiperSlide><img
             className="home_image"
             src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
             alt="home_back"
-          />
+          /></SwiperSlide>
+        <SwiperSlide><img
+            className="home_image"
+            src="https://m.media-amazon.com/images/I/61-cgR1J50L._SX3000_.jpg"
+            alt="home_back"
+          /></SwiperSlide>
 
+      </Swiper>
+          
           <div className="home_row">
             <Product
               id={key1}
